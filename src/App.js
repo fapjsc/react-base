@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
-import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
 
 import './App.css';
 
 import Person from './person/Person';
+
+const StyleButton = styled.button`
+  background-color: ${props => (props.altClass ? 'blue' : 'green')};
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+        background-color: ${props => (props.altClass ? 'aqua' : 'lightgreen')};
+        color: black;
+      },
+`;
 
 class App extends Component {
   state = {
@@ -46,21 +60,7 @@ class App extends Component {
   };
 
   render() {
-    // Style
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-
-      ':hover': {
-        backgroundColor: 'blue',
-        color: 'black',
-      },
-    };
-
+    <div></div>;
     let persons = null;
 
     if (this.state.showUser) {
@@ -80,13 +80,13 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = 'red';
-      style.color = 'blue';
+      // style.backgroundColor = 'red';
+      // style.color = 'blue';
 
-      style[':hover'] = {
-        backgroundColor: 'yellow',
-        color: 'red',
-      };
+      // style[':hover'] = {
+      //   backgroundColor: 'yellow',
+      //   color: 'red',
+      // };
     }
 
     const classes = [];
@@ -106,18 +106,16 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>React App</h1>
-          <p className={classes.join(' ')}>this is working</p>
-          <button style={style} onClick={this.toggleUser}>
-            show user
-          </button>
-          {persons}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1>React App</h1>
+        <p className={classes.join(' ')}>this is working</p>
+        <StyleButton altClass={this.state.showUser} onClick={this.toggleUser}>
+          show user
+        </StyleButton>
+        {persons}
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
