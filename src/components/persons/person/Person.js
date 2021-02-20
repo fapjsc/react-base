@@ -23,7 +23,7 @@ const person = props => {
       <p onClick={props.deleted}>
         i'm {props.name} and i am {props.age} years old
       </p>
-      <input type="text" onChange={props.changed} />
+      <input type="text" onChange={props.changed} value={props.name} />
     </StyledDiv>
   );
 };
